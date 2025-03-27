@@ -37,6 +37,42 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <style>
+      .captcha-container {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .captcha-text {
+        font-size: 24px;
+        font-family: 'Courier New', monospace;
+        letter-spacing: 3px;
+        color: #333;
+        background: #fff;
+        padding: 8px 15px;
+        border-radius: 4px;
+        user-select: none;
+        flex-grow: 1;
+      }
+      .refresh-captcha {
+        padding: 8px 15px;
+        background: #0ea2bd;
+        color: white;
+        border: none;
+      }
+      .refresh-captcha:hover {
+        background: #0b8ca3;
+        color: white;
+      }
+    </style>
   </head>
 
   <body class="index-page">
@@ -109,8 +145,6 @@ Responds will take not more than 48hrs
                 <h3>Get In Touch</h3>
 
                 <form
-                  action="forms/contact.php"
-                  method="post"
                   class="php-email-form"
                   data-aos="fade-up"
                   data-aos-delay="200"
@@ -154,6 +188,22 @@ Responds will take not more than 48hrs
                         placeholder="Message"
                         required=""
                       ></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="captcha-container">
+                        <div class="captcha-text" id="captcha-text"></div>
+                        <button type="button" class="btn btn-sm refresh-captcha" onclick="generateCaptcha()">
+                          <i class="bi bi-arrow-clockwise"></i> Refresh Captcha
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mt-2"
+                        id="captcha-input"
+                        placeholder="Enter the captcha text above"
+                        required=""
+                      />
                     </div>
 
                     <div class="col-12 text-center">
@@ -206,5 +256,109 @@ Responds will take not more than 48hrs
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+      // Initialize EmailJS
+      (function() {
+        emailjs.init("EQXgSioNru4ICHDjF"); // Replace with your EmailJS public key
+      })();
+
+      let captchaText = '';
+
+      function generateCaptcha() {
+        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        captchaText = '';
+        for (let i = 0; i < 6; i++) {
+          captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('captcha-text').textContent = captchaText;
+      }
+
+      // Generate captcha when page loads
+      document.addEventListener('DOMContentLoaded', generateCaptcha);
+
+      // Handle form submission with EmailJS
+      document.querySelector('.php-email-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // First check captcha
+        const captchaInput = document.getElementById('captcha-input').value;
+        if (captchaInput !== captchaText) {
+          await Swal.fire({
+            icon: 'error',
+            title: 'Captcha Incorrect',
+            text: 'Please try again with the correct captcha.',
+            confirmButtonColor: '#0ea2bd'
+          });
+          generateCaptcha();
+          document.getElementById('captcha-input').value = '';
+          return;
+        }
+
+        // Show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const loadingDiv = this.querySelector('.loading');
+        const errorDiv = this.querySelector('.error-message');
+        const successDiv = this.querySelector('.sent-message');
+
+        submitBtn.disabled = true;
+        loadingDiv.style.display = 'block';
+        errorDiv.style.display = 'none';
+        successDiv.style.display = 'none';
+
+        try {
+          // Prepare the email parameters
+          const templateParams = {
+            from_name: this.querySelector('[name="name"]').value,
+            from_email: this.querySelector('[name="email"]').value,
+            subject: this.querySelector('[name="subject"]').value,
+            message: this.querySelector('[name="message"]').value
+          };
+
+          // Send the email using EmailJS
+          await emailjs.send(
+            "service_tmz6rvh", // Replace with your EmailJS service ID
+            "template_n5nh6m4", // Replace with your EmailJS template ID
+            templateParams
+          );
+
+          // Show success message
+          loadingDiv.style.display = 'none';
+          successDiv.style.display = 'block';
+          
+          await Swal.fire({
+            icon: 'success',
+            title: 'Message Sent Successfully',
+            text: 'Thank you for your message! We will get back to you soon.',
+            confirmButtonColor: '#0ea2bd'
+          });
+
+          // Clear the form
+          this.reset();
+          generateCaptcha();
+
+        } catch (error) {
+          // Show error message
+          loadingDiv.style.display = 'none';
+          errorDiv.style.display = 'block';
+          errorDiv.innerHTML = 'Message could not be sent. Please try again later.';
+          
+          await Swal.fire({
+            icon: 'error',
+            title: 'Failed to Send Message',
+            text: 'There was an error sending your message. Please try again later.',
+            confirmButtonColor: '#0ea2bd'
+          });
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    </script>
   </body>
 </html>
