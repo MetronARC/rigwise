@@ -145,7 +145,7 @@ Responds will take not more than 48hrs
                 <h3>Get In Touch</h3>
 
                 <form
-                  class="php-email-form"
+                  class="contact-forms"
                   data-aos="fade-up"
                   data-aos-delay="200"
                 >
@@ -207,12 +207,6 @@ Responds will take not more than 48hrs
                     </div>
 
                     <div class="col-12 text-center">
-                      <div class="loading">Loading</div>
-                      <div class="error-message"></div>
-                      <div class="sent-message">
-                        Your message has been sent. Thank you!
-                      </div>
-
                       <button type="submit" class="btn">Send Message</button>
                     </div>
                   </div>
@@ -248,7 +242,6 @@ Responds will take not more than 48hrs
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
@@ -284,7 +277,7 @@ Responds will take not more than 48hrs
       document.addEventListener('DOMContentLoaded', generateCaptcha);
 
       // Handle form submission with EmailJS
-      document.querySelector('.php-email-form').addEventListener('submit', async function(e) {
+      document.querySelector('.contact-forms').addEventListener('submit', async function(e) {
         e.preventDefault();
         
         // First check captcha
@@ -303,19 +296,14 @@ Responds will take not more than 48hrs
 
         // Show loading state
         const submitBtn = this.querySelector('button[type="submit"]');
-        const loadingDiv = this.querySelector('.loading');
-        const errorDiv = this.querySelector('.error-message');
-        const successDiv = this.querySelector('.sent-message');
 
         submitBtn.disabled = true;
-        loadingDiv.style.display = 'block';
-        errorDiv.style.display = 'none';
-        successDiv.style.display = 'none';
 
         try {
           // Prepare the email parameters
           const templateParams = {
             from_name: this.querySelector('[name="name"]').value,
+            name: this.querySelector('[name="name"]').value,
             from_email: this.querySelector('[name="email"]').value,
             subject: this.querySelector('[name="subject"]').value,
             message: this.querySelector('[name="message"]').value
@@ -327,10 +315,6 @@ Responds will take not more than 48hrs
             "template_n5nh6m4", // Replace with your EmailJS template ID
             templateParams
           );
-
-          // Show success message
-          loadingDiv.style.display = 'none';
-          successDiv.style.display = 'block';
           
           await Swal.fire({
             icon: 'success',
@@ -344,11 +328,7 @@ Responds will take not more than 48hrs
           generateCaptcha();
 
         } catch (error) {
-          // Show error message
-          loadingDiv.style.display = 'none';
-          errorDiv.style.display = 'block';
-          errorDiv.innerHTML = 'Message could not be sent. Please try again later.';
-          
+                    
           await Swal.fire({
             icon: 'error',
             title: 'Failed to Send Message',
