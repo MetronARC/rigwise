@@ -202,7 +202,7 @@
         data.slides.forEach((slide, index) => {
             // Properly encode the image filename while preserving the directory structure
             const filename = slide.carousel_image.replace(/\s+/g, ''); // Remove spaces from filename
-            const imagePath = `assets/img/background-image/${filename}`; // Add image path prefix
+            const imagePath = `<?= base_url() ?>/assets/img/background-image/${filename}`; // Add image path prefix
             
             const slideHtml = `
                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
