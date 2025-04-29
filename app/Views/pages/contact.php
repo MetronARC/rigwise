@@ -68,10 +68,6 @@
                             <div class="icon-box">
                                 <i class="bi bi-telephone"></i>
                             </div>
-                            <div class="content">
-                                <h4>Phone Number</h4>
-                                <p>+65 9807 8025</p>
-                            </div>
                         </div>
                     </div>
                 </div>
