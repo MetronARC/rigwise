@@ -4,54 +4,30 @@
 
 <main class="main">
     <!-- Hero Section -->
-    <section id="hero" class="hero section">
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <section id="hero" class="hero section position-relative">
+        <!-- Background Slideshow -->
+        <div class="hero-slideshow">
+            <div class="hero-slide active" style="background-image: url('assets/img/background-image/10001.JPG')"></div>
+            <div class="hero-slide" style="background-image: url('assets/img/background-image/10002p.JPG')"></div>
+            <div class="hero-slide" style="background-image: url('assets/img/background-image/10003p.JPG')"></div>
+            <div class="hero-slide" style="background-image: url('assets/img/background-image/10004p.JPG')"></div>
+        </div>
+        
+        <!-- Content Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-                        <h1 class="mb-4">
+                        <h1 class="mb-4 text-white">
                             Welcome to <br />
                             <span class="accent-text">Rigwise Technologies Pte Ltd</span>
                         </h1>
 
-                        <p class="mb-4 mb-md-5">
-                            From shipping and offshore services with the highest levels of
-                            customer satisfaction. Our highly accomplished team can
-                            proactively manage your needs with the ability to build and
-                            maintain relationships, a core skill in business today
+                        <p class="mb-4 mb-md-5 text-white">
+                        Expert MWS and OVID Inspector, delivering marine safety and audit products to industry. Expert in Marine Project Management, Operations, and Strategy. History of Building and maintaining strong client relations.
                         </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="hero-carousel" data-aos="zoom-out" data-aos-delay="300">
-                        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                            <!-- Add carousel indicators for better navigation -->
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            </div>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="assets/img/maxresdefault.jpg" class="d-block w-100 rounded-4" alt="Hero Image 1">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="assets/img/about-2.webp" class="d-block w-100 rounded-4" alt="Hero Image 2">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="assets/img/about-5.webp" class="d-block w-100 rounded-4" alt="Hero Image 3">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -60,53 +36,83 @@
                 class="row stats-row gy-4 mt-5"
                 data-aos="fade-up"
                 data-aos-delay="500">
-                <div class="col-5-cols">
+                <div class="col-lg-3 col-sm-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-trophy"></i>
+                            <i class="bi bi-check2"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Accredited OVID Inspector</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="bi bi-check2"></i>
                         </div>
                         <div class="stat-content">
                             <h4>Marine Warranty</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-5-cols">
+                <div class="col-lg-3 col-sm-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-briefcase"></i>
+                            <i class="bi bi-check2"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Marine Consultant</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="bi bi-check2"></i>
                         </div>
                         <div class="stat-content">
                             <h4>Rig Mover</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-5-cols">
+                <div class="col-lg-3 col-sm-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-graph-up"></i>
+                            <i class="bi bi-check2"></i>
                         </div>
                         <div class="stat-content">
                             <h4>Rig Specialist</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-5-cols">
+                <div class="col-lg-3 col-sm-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-award"></i>
+                            <i class="bi bi-check2"></i>
                         </div>
                         <div class="stat-content">
-                            <h4>International Consultancy</h4>
+                            <h4>Marine Layup Service</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-5-cols">
+                <div class="col-lg-3 col-sm-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-star"></i>
+                            <i class="bi bi-check2"></i>
                         </div>
                         <div class="stat-content">
-                            <h4>Customer Relations</h4>
+                            <h4>Marine Warranty Surveyor</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="bi bi-check2"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Marine Advisor</h4>
                         </div>
                     </div>
                 </div>
@@ -124,57 +130,60 @@
                     <h2 class="about-title">
                         Rigs, ships and the vessels that move them
                     </h2>
-                    <p class="about-description">
-                        We are a top-performing Marine Consultant credited with managing
-                        all phases of rig operations, international marine operations,
-                        and expertise to deliver cost savings and budgetary efficiency
-                        in international, multi-cultural markets
-                    </p>
-                    <p class="about-description">
-                        Our skilled Marine Team include Rig Movers and Pilots for both
-                        anchored and jack-up MODU's, Reconnect Pilots for FPSO
-                        Operations, Shuttle Pilots for FPSO Operations
-                    </p>
-                    <p class="about-description">
-                        Our skilled Rig Team include Rig Manager, Bull Pusher and
-                        Performance Pusher, Completions Manager and Sub Sea Experts
-                    </p>
-                    <div class="row feature-list-wrapper">
-                    </div>
+                    
+                    <div class="service-list mt-4">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4 class="service-category-title mb-3">Master and Rig Mover</h4>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check2"></i> FPSO</li>
+                                    <li><i class="bi bi-check2"></i> AFRAMAX</li>
+                                    <li><i class="bi bi-check2"></i> AHTS</li>
+                                    <li><i class="bi bi-check2"></i> MODU Semi Sub</li>
+                                    <li><i class="bi bi-check2"></i> MODU Drill Ship</li>
+                                    <li><i class="bi bi-check2"></i> MODU Jack Up</li>
+                                    <li><i class="bi bi-check2"></i> MODU Tender Barge</li>
+                                    <li><i class="bi bi-check2"></i> MOU SPJUB</li>
+                                </ul>
+                            </div>
 
-                    <div class="info-wrapper">
-                        <div class="row gy-4">
-                            <div class="col-lg-5">
-                                <div class="profile d-flex align-items-center gap-3">
-                                    <img
-                                        src="assets/img/avatar-1.webp"
-                                        alt="CEO Profile"
-                                        class="profile-image" />
-                                    <div>
-                                        <h4 class="profile-name">Phil Shearer</h4>
-                                        <p class="profile-position">CEO &amp; Founder</p>
-                                    </div>
-                                </div>
+                            <div class="col-md-4">
+                                <h4 class="service-category-title mb-3">Watchkeeper - Tankers</h4>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check2"></i> VLCC</li>
+                                    <li><i class="bi bi-check2"></i> AFRAMAX</li>
+                                    <li><i class="bi bi-check2"></i> Products Tanker</li>
+                                    <li><i class="bi bi-check2"></i> Gas Tanker</li>
+                                    <li><i class="bi bi-check2"></i> Chemical Tanker</li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h4 class="service-category-title mb-3">Watchkeeper - Others</h4>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check2"></i> 3D Survey</li>
+                                    <li><i class="bi bi-check2"></i> Self Discharging Bulk Carrier</li>
+                                    <li><i class="bi bi-check2"></i> Container/ Bulk Carrier</li>
+                                    <li><i class="bi bi-check2"></i> Geared General Cargo</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="image-wrapper">
-                        <div
-                            class="images position-relative"
-                            data-aos="zoom-out"
-                            data-aos-delay="400">
-                            <img
-                                src="assets/img/about-5.webp"
-                                alt="Business Meeting"
-                                class="img-fluid main-image rounded-4" />
-                            <img
-                                src="assets/img/about-2.webp"
-                                alt="Team Discussion"
-                                class="img-fluid small-image rounded-4" />
+                    <div id="aboutCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Carousel items will be inserted here by JavaScript -->
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -182,5 +191,115 @@
     </section>
     <!-- /About Section -->
 </main>
+
+<!-- Add this script section before closing the content section -->
+<script>
+    // Function to populate the carousel
+    function populateCarousel(data) {
+        const carouselInner = document.querySelector('#aboutCarousel .carousel-inner');
+        carouselInner.innerHTML = ''; // Clear existing slides
+        
+        data.slides.forEach((slide, index) => {
+            // Properly encode the image filename while preserving the directory structure
+            const filename = slide.carousel_image.replace(/\s+/g, ''); // Remove spaces from filename
+            const imagePath = `assets/img/background-image/${filename}`; // Add image path prefix
+            
+            const slideHtml = `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                    <img src="${imagePath}" class="d-block w-100 rounded-4" alt="${slide.carousel_alt}">
+                    <div class="carousel-caption">
+                        <h5>${slide.carousel_title}</h5>
+                    </div>
+                </div>
+            `;
+            carouselInner.innerHTML += slideHtml;
+        });
+
+        // Initialize Bootstrap carousel after adding slides
+        new bootstrap.Carousel(document.querySelector('#aboutCarousel'));
+    }
+
+    // Function to fetch carousel data from API
+    async function fetchCarouselData() {
+        try {
+            const response = await fetch('<?= base_url() ?>/api/carousel-data');
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Received data:', data); // Debug log
+            
+            if (!data.error) {
+                populateCarousel(data);
+            } else {
+                console.error('API returned error:', data.message);
+            }
+        } catch (error) {
+            console.error('Error fetching carousel data:', error);
+            console.error('Error details:', error.message);
+        }
+    }
+
+    // Initialize carousel when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, fetching carousel data...'); // Debug log
+        fetchCarouselData();
+    });
+</script>
+
+<style>
+    /* Add these styles for better caption visibility */
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        padding: 20px;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        text-align: left;
+    }
+
+    .carousel-caption h5 {
+        color: #fff;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .carousel-caption p {
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    /* Style for service category titles */
+    .service-category-title {
+        color: #333;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    /* Style for service list items */
+    .service-list li {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    .service-list .bi-check2 {
+        color: #0066cc;
+        margin-right: 8px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .service-list .col-md-4:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+</style>
 
 <?= $this->endSection() ?>

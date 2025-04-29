@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center">
                   <img
-                    src="assets/img/features-illustration-1.webp"
+                    src="assets/img/background-image/10013ps.JPG"
                     alt=""
                     class="img-fluid"
                   />
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center">
                   <img
-                    src="assets/img/features-illustration-2.webp"
+                    src="assets/img/background-image/10028sp.JPG"
                     alt=""
                     class="img-fluid"
                   />
@@ -162,7 +162,7 @@
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center">
                   <img
-                    src="assets/img/features-illustration-3.webp"
+                    src="assets/img/background-image/10023ps.JPG"
                     alt=""
                     class="img-fluid"
                   />
@@ -175,139 +175,72 @@
       </section>
       <!-- /Features Section -->
        <!-- Skills Section -->
-    <section id="skills" class="skills section">
-      <div class="container">
-        <div class="section-title" data-aos="fade-up">
-          <h2>Our Areas of Expertise</h2>
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4 align-items-center justify-content-between">
+                <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
+                    <span class="about-meta">MORE ABOUT US</span>
+                    <h2 class="about-title">
+                        Rigs, ships and the vessels that move them
+                    </h2>
+                    <p class="about-description">
+                        We are a top-performing Marine Consultant credited with managing
+                        all phases of rig operations, international marine operations,
+                        and expertise to deliver cost savings and budgetary efficiency
+                        in international, multi-cultural markets
+                    </p>
+                    <p class="about-description">
+                        Our skilled Marine Team include Rig Movers and Pilots for both
+                        anchored and jack-up MODU's, Reconnect Pilots for FPSO
+                        Operations, Shuttle Pilots for FPSO Operations
+                    </p>
+                    <p class="about-description">
+                        Our skilled Rig Team include Rig Manager, Bull Pusher and
+                        Performance Pusher, Completions Manager and Sub Sea Experts
+                    </p>
+                    <div class="row feature-list-wrapper">
+                    </div>
+
+                    <div class="info-wrapper">
+                        <div class="row gy-4">
+                            <div class="col-lg-5">
+                                <div class="profile d-flex align-items-center gap-3">
+                                    <img
+                                        src="assets/img/avatar.png"
+                                        alt="CEO Profile"
+                                        class="profile-image" />
+                                    <div>
+                                        <h4 class="profile-name">Phil Shearer</h4>
+                                        <p class="profile-position">CEO &amp; Founder</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="image-wrapper">
+                        <div
+                            class="images position-relative"
+                            data-aos="zoom-out"
+                            data-aos-delay="400">
+                            <img
+                                src="assets/img/background-image/10024sp.JPG"
+                                alt="Business Meeting"
+                                class="img-fluid main-image rounded-4" />
+                            <img
+                                src="assets/img/background-image/10018s.JPG"
+                                alt="Team Discussion"
+                                class="img-fluid small-image rounded-4" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="progress" data-aos="fade-right">
-              <span class="skill">Continuous Improvement<i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 95%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-right" data-aos-delay="100">
-              <span class="skill">Team Leadership & Development<i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 87%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-right" data-aos-delay="200">
-              <span class="skill">Marine Environment Protection<i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 85%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-left" data-aos-delay="300">
-              <span class="skill">Offshore Installation Management <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 82%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-left" data-aos-delay="400">
-              <span class="skill">Key Performance Indicators <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 86%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Government Relations <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 87%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">International Maritime Affairs <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 89%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Ship Operations Management <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 84%"></div>
-              </div>
-            </div>
-
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Client & Stakeholder Relations <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 89%"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6">
-            
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Supply Chain Management <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 87%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Budget Management <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 86%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Project Management <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 85%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Safety Standards <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 84%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Rig Mover <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 91%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">OVID & CMID Inspector<i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 94%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Oil & Gas Supplies <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 87%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Oil & Gas Presale Process <i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 90%"></div>
-              </div>
-            </div>
-            <div class="progress" data-aos="fade-left" data-aos-delay="500">
-              <span class="skill">Business Life-cycle<i class="val"></i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" style="--progress-value: 88%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Skills Section -->
+    </section>
+    <!-- /About Section -->
     </main>
 
 <?= $this->endSection() ?>

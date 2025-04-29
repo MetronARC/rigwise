@@ -143,24 +143,43 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: rgba(255, 255, 255, 0);
+  --header-background: transparent;
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: transparent;
   padding: 20px 0;
   transition: all 0.5s;
   z-index: 997;
 }
 
 .header .header-container {
-  background: var(--surface-color);
+  --container-background: var(--surface-color);
+  background: var(--container-background);
   border-radius: 50px;
   padding: 5px 25px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   justify-content: center;
+  transition: all 0.5s;
 }
 
+/* Transparent state when on hero section */
+body:not(.scrolled) .header.on-hero .header-container {
+  --container-background: none;
+  backdrop-filter: blur(10px);
+  box-shadow: none;
+}
+
+body:not(.scrolled) .header.on-hero .navmenu a {
+  color: var(--contrast-color);
+}
+
+body:not(.scrolled) .header.on-hero .navmenu a:hover,
+body:not(.scrolled) .header.on-hero .navmenu a.active {
+  color: var(--accent-color);
+}
+
+/* Scrolled state */
 .scrolled .header .header-container {
-  background: color-mix(in srgb, var(--surface-color), transparent 5%);
+  --container-background: var(--surface-color);
 }
 
 .header .logo {
@@ -724,8 +743,50 @@ section,
 --------------------------------------------------------------*/
 .hero {
   position: relative;
+  min-height: 100vh;
+  padding: 120px 0;
   overflow: hidden;
-  padding-top: 140px;
+}
+
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 3;
 }
 
 .hero-carousel {
@@ -946,7 +1007,7 @@ section,
   position: relative;
   z-index: 1;
   margin-top: 5rem;
-  background-color: var(--surface-color);
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   padding-bottom: 2rem;

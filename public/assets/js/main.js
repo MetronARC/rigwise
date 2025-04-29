@@ -15,8 +15,22 @@
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
+    const heroSection = document.querySelector('#hero');
+    
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+    
+    // Add/remove scrolled class based on scroll position
     window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+
+    // Add/remove on-hero class based on if we're viewing the hero section
+    if (heroSection) {
+      const heroRect = heroSection.getBoundingClientRect();
+      if (heroRect.top <= 0 && heroRect.bottom > 0) {
+        selectHeader.classList.add('on-hero');
+      } else {
+        selectHeader.classList.remove('on-hero');
+      }
+    }
   }
 
   document.addEventListener('scroll', toggleScrolled);

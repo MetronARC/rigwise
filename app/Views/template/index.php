@@ -40,6 +40,16 @@
     <?= $this->include('template/header') ?>
     <?= $this->renderSection('content') ?>
     <?= $this->include('template/footer') ?>
+
+    <!-- Vendor JS Files -->
+    <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <script src="<?= base_url('assets/vendor/aos/aos.js') ?>"></script>
+    <script src="<?= base_url('assets/vendor/glightbox/js/glightbox.min.js') ?>"></script>
+    <script src="<?= base_url('assets/vendor/swiper/swiper-bundle.min.js') ?>"></script>
+    
+    <!-- Template Main JS File -->
+    <script src="<?= base_url('assets/js/main.js') ?>"></script>
+    <script src="<?= base_url('assets/js/hero-slideshow.js') ?>"></script>
 </body>
 
 </html>
