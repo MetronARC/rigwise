@@ -8,5 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Pages::index');
 $routes->get('/about', 'Pages::about');
 $routes->get('/contact', 'Pages::contact');
+
+// Carousel routes
+$routes->get('/api/carousel-reset', 'CarouselController::resetCarousel');
 $routes->get('/api/carousel-data', 'CarouselController::getCarouselData');
 
