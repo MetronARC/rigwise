@@ -34,9 +34,51 @@
 
     <!-- Main CSS File -->
     <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet" />
+
+    <!-- Preloader Styles -->
+    <style>
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #preloader:before {
+            content: "";
+            position: fixed;
+            top: calc(50% - 30px);
+            left: calc(50% - 30px);
+            border: 6px solid #0066cc;
+            border-top-color: #e2eefd;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: animate-preloader 1s linear infinite;
+        }
+
+        @keyframes animate-preloader {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hide-preloader {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
     <?= $this->include('template/header') ?>
     <?= $this->renderSection('content') ?>
     <?= $this->include('template/footer') ?>
@@ -50,6 +92,56 @@
     <!-- Template Main JS File -->
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
     <script src="<?= base_url('assets/js/hero-slideshow.js') ?>"></script>
+
+    <!-- Preloader Script -->
+    <script>
+        window.addEventListener('load', function() {
+            // Initialize an array to store all image promises
+            const imagePromises = [];
+            
+            // Get all images on the page
+            const images = document.getElementsByTagName('img');
+            
+            // Create a promise for each image
+            for (let img of images) {
+                const promise = new Promise((resolve, reject) => {
+                    if (img.complete) {
+                        resolve();
+                    } else {
+                        img.addEventListener('load', resolve);
+                        img.addEventListener('error', resolve); // Resolve on error too, to prevent hanging
+                    }
+                });
+                imagePromises.push(promise);
+            }
+
+            // Get all background images
+            const elements = document.getElementsByClassName('hero-slide');
+            for (let element of elements) {
+                const bgUrl = window.getComputedStyle(element).backgroundImage.match(/url\(['"]?(.*?)['"]?\)/);
+                if (bgUrl) {
+                    const promise = new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.onload = resolve;
+                        img.onerror = resolve; // Resolve on error too
+                        img.src = bgUrl[1];
+                    });
+                    imagePromises.push(promise);
+                }
+            }
+
+            // Wait for all images to load
+            Promise.all(imagePromises).then(() => {
+                const preloader = document.getElementById('preloader');
+                if (preloader) {
+                    preloader.classList.add('hide-preloader');
+                    setTimeout(() => {
+                        preloader.remove();
+                    }, 500);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
