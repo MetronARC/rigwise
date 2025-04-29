@@ -6,11 +6,8 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section position-relative">
         <!-- Background Slideshow -->
-        <div class="hero-slideshow">
-            <div class="hero-slide active" style="background-image: url('assets/img/background-image/10001.JPG')"></div>
-            <div class="hero-slide" style="background-image: url('assets/img/background-image/10002p.JPG')"></div>
-            <div class="hero-slide" style="background-image: url('assets/img/background-image/10003p.JPG')"></div>
-            <div class="hero-slide" style="background-image: url('assets/img/background-image/10004p.JPG')"></div>
+        <div id="heroSlideshow" class="hero-slideshow">
+            <!-- Hero slides will be inserted here by JavaScript -->
         </div>
         
         <!-- Content Overlay -->
@@ -26,7 +23,7 @@
                         </h1>
 
                         <p class="mb-4 mb-md-5 text-white">
-                        Expert MWS and OVID Inspector, delivering marine safety and audit products to industry. Expert in Marine Project Management, Operations, and Strategy. History of Building and maintaining strong client relations.
+                        Expert MWS and OVID Inspector, delivering marine safety and audit products to industry. Expert in Marine Project Management, Operations, and Strategy. History of Building and maintaining strong client relations.
                         </p>
                     </div>
                 </div>
@@ -194,15 +191,50 @@
 
 <!-- Add this script section before closing the content section -->
 <script>
-    // Function to populate the carousel
-    function populateCarousel(data) {
+    // Function to populate the hero slideshow
+    function populateHeroSlideshow(data) {
+        const slideshow = document.querySelector('#heroSlideshow');
+        slideshow.innerHTML = ''; // Clear existing slides
+        
+        data.slides.forEach((slide, index) => {
+            const filename = slide.carousel_image.replace(/\s+/g, '');
+            const imagePath = `<?= base_url() ?>/assets/img/background-image/${filename}`;
+            
+            const slideHtml = `
+                <div class="hero-slide ${index === 0 ? 'active' : ''}" 
+                     style="background-image: url('${imagePath}')"
+                     title="${slide.carousel_title}">
+                </div>
+            `;
+            slideshow.innerHTML += slideHtml;
+        });
+
+        // Set up hero slideshow rotation
+        setupHeroSlideshow();
+    }
+
+    // Function to handle hero slideshow rotation
+    function setupHeroSlideshow() {
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function rotateSlides() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(rotateSlides, 5000); // Rotate every 5 seconds
+    }
+
+    // Function to populate the about carousel
+    function populateAboutCarousel(data) {
         const carouselInner = document.querySelector('#aboutCarousel .carousel-inner');
         carouselInner.innerHTML = ''; // Clear existing slides
         
         data.slides.forEach((slide, index) => {
-            // Properly encode the image filename while preserving the directory structure
-            const filename = slide.carousel_image.replace(/\s+/g, ''); // Remove spaces from filename
-            const imagePath = `<?= base_url() ?>/assets/img/background-image/${filename}`; // Add image path prefix
+            const filename = slide.carousel_image.replace(/\s+/g, '');
+            const imagePath = `<?= base_url() ?>/assets/img/background-image/${filename}`;
             
             const slideHtml = `
                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
@@ -220,32 +252,37 @@
     }
 
     // Function to fetch carousel data from API
-    async function fetchCarouselData() {
+    async function fetchCarouselData(type) {
         try {
-            const response = await fetch('<?= base_url() ?>/api/carousel-data');
+            const response = await fetch(`<?= base_url() ?>/api/carousel-data?type=${type}`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const data = await response.json();
-            console.log('Received data:', data); // Debug log
+            console.log(`Received ${type} data:`, data); // Debug log
             
             if (!data.error) {
-                populateCarousel(data);
+                if (type === 'hero') {
+                    populateHeroSlideshow(data);
+                } else {
+                    populateAboutCarousel(data);
+                }
             } else {
                 console.error('API returned error:', data.message);
             }
         } catch (error) {
-            console.error('Error fetching carousel data:', error);
+            console.error(`Error fetching ${type} carousel data:`, error);
             console.error('Error details:', error.message);
         }
     }
 
-    // Initialize carousel when DOM is loaded
+    // Initialize both carousels when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM loaded, fetching carousel data...'); // Debug log
-        fetchCarouselData();
+        fetchCarouselData('hero');
+        fetchCarouselData('about');
     });
 </script>
 
@@ -299,6 +336,33 @@
         .service-list .col-md-4:not(:last-child) {
             margin-bottom: 30px;
         }
+    }
+
+    /* Add styles for hero slideshow */
+    .hero-slideshow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .hero-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .hero-slide.active {
+        opacity: 1;
     }
 </style>
 

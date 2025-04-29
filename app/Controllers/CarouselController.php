@@ -11,12 +11,15 @@ class CarouselController extends ResourceController
 
     public function getCarouselData()
     {
+        $type = $this->request->getGet('type') ?? 'about'; // 'hero' or 'about'
+        
         $db = \Config\Database::connect();
         $builder = $db->table('rigwise_carousel');
         
         // Get seed from session if exists, otherwise use current month
         $session = session();
-        $currentSeed = $session->get('carousel_seed') ?? date('Ym');
+        $seedKey = $type . '_carousel_seed';
+        $currentSeed = $session->get($seedKey) ?? date('Ym');
         mt_srand($currentSeed);
 
         // Get total count of rows
@@ -50,17 +53,20 @@ class CarouselController extends ResourceController
 
     public function resetCarousel()
     {
+        $type = $this->request->getGet('type') ?? 'about'; // 'hero' or 'about'
+        
         // Generate new random seed
         $newSeed = mt_rand();
         
-        // Store in session
+        // Store in session with type-specific key
         $session = session();
-        $session->set('carousel_seed', $newSeed);
+        $seedKey = $type . '_carousel_seed';
+        $session->set($seedKey, $newSeed);
 
         return $this->respond([
             'status' => 200,
             'error' => false,
-            'message' => 'Carousel has been reset with new images'
+            'message' => "Carousel ($type) has been reset with new images"
         ]);
     }
 } 
