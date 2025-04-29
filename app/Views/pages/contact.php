@@ -63,12 +63,6 @@
                                 <p>#10-09 AZ Singapore 409015</p>
                             </div>
                         </div>
-
-                        <div class="info-item" data-aos="fade-up" data-aos-delay="400">
-                            <div class="icon-box">
-                                <i class="bi bi-telephone"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
