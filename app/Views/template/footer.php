@@ -25,6 +25,3 @@
 <script src="<?= base_url('assets/vendor/glightbox/js/glightbox.min.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/swiper/swiper-bundle.min.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/purecounter/purecounter_vanilla.js') ?>"></script>
-
-<!-- Main JS File -->
-<script src="<?= base_url('assets/js/main.js') ?>"></script>
