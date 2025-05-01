@@ -70,10 +70,7 @@
                     <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
                         <h3>Get In Touch</h3>
 
-                        <form
-                            class="contact-forms"
-                            data-aos="fade-up"
-                            data-aos-delay="200">
+                        <form id="contactForm" class="contact-forms" data-aos="fade-up" data-aos-delay="200">
                             <div class="row gy-4">
                                 <div class="col-md-6">
                                     <input
@@ -81,7 +78,7 @@
                                         name="name"
                                         class="form-control"
                                         placeholder="Your Name"
-                                        required="" />
+                                        required />
                                 </div>
 
                                 <div class="col-md-6">
@@ -90,7 +87,7 @@
                                         class="form-control"
                                         name="email"
                                         placeholder="Your Email"
-                                        required="" />
+                                        required />
                                 </div>
 
                                 <div class="col-12">
@@ -99,7 +96,7 @@
                                         class="form-control"
                                         name="subject"
                                         placeholder="Subject"
-                                        required="" />
+                                        required />
                                 </div>
 
                                 <div class="col-12">
@@ -108,13 +105,13 @@
                                         name="message"
                                         rows="6"
                                         placeholder="Message"
-                                        required=""></textarea>
+                                        required></textarea>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="captcha-container">
                                         <div class="captcha-text" id="captcha-text"></div>
-                                        <button type="button" class="btn btn-sm refresh-captcha" onclick="generateCaptcha()">
+                                        <button type="button" class="btn btn-sm refresh-captcha" id="refresh-captcha">
                                             <i class="bi bi-arrow-clockwise"></i> Refresh Captcha
                                         </button>
                                     </div>
@@ -122,8 +119,9 @@
                                         type="text"
                                         class="form-control mt-2"
                                         id="captcha-input"
+                                        name="captcha"
                                         placeholder="Enter the captcha text above"
-                                        required="" />
+                                        required />
                                 </div>
 
                                 <div class="col-12 text-center">
@@ -142,86 +140,75 @@
 <!-- SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- EmailJS SDK -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 <script>
-    // Initialize EmailJS
-    (function() {
-        emailjs.init("EQXgSioNru4ICHDjF"); // Replace with your EmailJS public key
-    })();
-
-    let captchaText = '';
-
-    function generateCaptcha() {
-        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        captchaText = '';
-        for (let i = 0; i < 6; i++) {
-            captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
+    // Function to fetch and display new CAPTCHA
+    async function refreshCaptcha() {
+        try {
+            const response = await fetch('<?= base_url('contact/generateCaptcha') ?>');
+            const data = await response.json();
+            
+            if (data.status === 'success') {
+                document.getElementById('captcha-text').textContent = data.captcha;
+                document.getElementById('captcha-input').value = ''; // Clear input field
+            } else {
+                console.error('Failed to generate CAPTCHA');
+            }
+        } catch (error) {
+            console.error('Error fetching CAPTCHA:', error);
         }
-        document.getElementById('captcha-text').textContent = captchaText;
     }
 
-    // Generate captcha when page loads
-    document.addEventListener('DOMContentLoaded', generateCaptcha);
+    // Generate CAPTCHA when page loads
+    document.addEventListener('DOMContentLoaded', refreshCaptcha);
 
-    // Handle form submission with EmailJS
-    document.querySelector('.contact-forms').addEventListener('submit', async function(e) {
+    // Refresh CAPTCHA when button is clicked
+    document.getElementById('refresh-captcha').addEventListener('click', refreshCaptcha);
+
+    // Handle form submission
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        // First check captcha
-        const captchaInput = document.getElementById('captcha-input').value;
-        if (captchaInput !== captchaText) {
-            await Swal.fire({
-                icon: 'error',
-                title: 'Captcha Incorrect',
-                text: 'Please try again with the correct captcha.',
-                confirmButtonColor: '#0ea2bd'
-            });
-            generateCaptcha();
-            document.getElementById('captcha-input').value = '';
-            return;
-        }
-
-        // Show loading state
         const submitBtn = this.querySelector('button[type="submit"]');
-
         submitBtn.disabled = true;
 
         try {
-            // Prepare the email parameters
-            const templateParams = {
-                from_name: this.querySelector('[name="name"]').value,
-                name: this.querySelector('[name="name"]').value,
-                from_email: this.querySelector('[name="email"]').value,
-                subject: this.querySelector('[name="subject"]').value,
-                message: this.querySelector('[name="message"]').value
-            };
-
-            // Send the email using EmailJS
-            await emailjs.send(
-                "service_tmz6rvh", // Replace with your EmailJS service ID
-                "template_n5nh6m4", // Replace with your EmailJS template ID
-                templateParams
-            );
-
-            await Swal.fire({
-                icon: 'success',
-                title: 'Message Sent Successfully',
-                text: 'Thank you for your message! We will get back to you soon.',
-                confirmButtonColor: '#0ea2bd'
+            const formData = new FormData(this);
+            
+            const response = await fetch('<?= base_url('contact/send') ?>', {
+                method: 'POST',
+                body: formData
             });
 
-            // Clear the form
-            this.reset();
-            generateCaptcha();
+            const result = await response.json();
 
+            if (result.status === 'success') {
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: result.message,
+                    confirmButtonColor: '#0ea2bd'
+                });
+                
+                // Clear the form
+                this.reset();
+                refreshCaptcha();
+            } else {
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.message,
+                    confirmButtonColor: '#0ea2bd'
+                });
+                
+                // Refresh CAPTCHA on error
+                refreshCaptcha();
+            }
         } catch (error) {
-
+            console.error('Error:', error);
             await Swal.fire({
                 icon: 'error',
-                title: 'Failed to Send Message',
-                text: 'There was an error sending your message. Please try again later.',
+                title: 'Error',
+                text: 'An unexpected error occurred. Please try again later.',
                 confirmButtonColor: '#0ea2bd'
             });
         } finally {

@@ -13,3 +13,6 @@ $routes->get('/contact', 'Pages::contact');
 $routes->get('/api/carousel-reset', 'CarouselController::resetCarousel');
 $routes->get('/api/carousel-data', 'CarouselController::getCarouselData');
 
+// Contact form routes
+$routes->post('contact/send', 'Contact::sendEmail');
+$routes->get('contact/generateCaptcha', 'Contact::generateCaptcha');
